@@ -66,7 +66,7 @@ form{
 }
 form *{
     font-family: 'Poppins',sans-serif;
-    color: #ffffff;
+    /* color: #ffffff; */
     letter-spacing: 0.5px;
     outline: none;
     border: none;
@@ -119,14 +119,13 @@ button{
   border-radius: 3px;
   padding: 5px 10px 10px 5px;
   background-color: rgba(255,255,255,0.27);
-  color: #eaf0fb;
+
   text-align: center;
 }
-.social div:hover{
-  background-color: rgba(255,255,255,0.47);
-}
+
 .social .fb{
   margin-left: 25px;
+
 }
 .social i{
   margin-right: 4px;
@@ -149,10 +148,12 @@ button{
         <input type="password" placeholder="Password" id="password">
 
         <button id="submit">Log In</button>
-        <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
-          <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
-        </div>
+        <!-- <div class="social"> -->
+          <!-- <div class="go">  Forgot Password? </div>
+          <div class="fb"> Create New Account</div> -->
+          <!-- <a class="go" href="#">Forgot Password?</a> -->
+          <a class="fb" href="/register-router/register-new-user">Create New Account</a>
+        <!-- </div> -->
     </form>
 </body>
 
@@ -168,6 +169,7 @@ button{
             
             if(!username && ! password){
                  console.log('Invalid inputs');
+                 alert('Invalid inputs.')
                 return;
             }
          else{
@@ -180,19 +182,18 @@ button{
             },
             success: function (response) {
                 console.log("response---->", response.user);
-                console.log("response---->", response.message);
                 if (response.status == 200) {
                   console.log('inside ::::::');
                   document.location.href = '/get-dashboard';
-                    
-                
-                } else {
+                 } else {
                     console.log('error ::::::');
+                    console.log("response---->", response.message);
                     document.location.href = '/login';
                 }
             },
             error: function (errors) {
                     console.log("errors", errors)
+                    alert('Invalid User')
                     document.location.href = '/login';
             }
             });

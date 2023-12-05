@@ -6,6 +6,7 @@ app.set('view engine', 'ejs');
 app.set('views','./app/views');
 app.use(express.static('public'));
 
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 
@@ -18,9 +19,11 @@ app.use(sessions({
 }));
 app.use(cookieParser());
 const loginRouter = require('./app/routers/loginRouter');
+const registerRouter = require('./app/routers/registerUser');
 require("dotenv").config();
 const PORT = process.env.SERVER_PORT; 
 app.use("/", loginRouter);
+app.use("/register-router", registerRouter);
 
 
 
